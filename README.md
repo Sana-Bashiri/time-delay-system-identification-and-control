@@ -105,12 +105,12 @@ Keep the following files together in the repository root to use the commands and
 
 | File | Purpose |
 | --- | --- |
-| `matlab_part1_3rd.m` | FOPDT identification using the step-response tangent; plots the construction and prints the fitted parameters. |
-| `matlab_part1_4th.m` | SOPDT identification using positive-parameter numerical optimization; plots the fitted response against the original plant. |
-| `simulink_part2.slx` | Step-response comparison of the original plant, FOPDT model, and SOPDT model. |
-| `simulink_part3_relay.slx` | Relay-feedback experiment for ultimate-point estimation. |
-| `simulink_part4.slx` | Four PID feedback configurations containing the manually adjusted gains. |
-| `simulink_part5.slx` | Smith predictor configurations with full and reduced internal models. |
+| `identify_fopdt.m` | FOPDT identification using the step-response tangent; plots the construction and prints the fitted parameters. |
+| `identify_sopdt.m` | SOPDT identification using positive-parameter numerical optimization; plots the fitted response against the original plant. |
+| `compare_process_models.slx` | Step-response comparison of the original plant, FOPDT model, and SOPDT model. |
+| `relay_feedback.slx` | Relay-feedback experiment for ultimate-point estimation. |
+| `pid_tuning_comparison.slx` | Four PID feedback configurations containing the manually adjusted gains. |
+| `smith_predictor_comparison.slx` | Smith predictor configurations with full and reduced internal models. |
 | [English summary](english_project_summary.pdf) | Five-page English academic summary with figures reproduced from the original report. |
 | [Original Persian report](final_project_report_gholipour.pdf) | Source calculations, model diagrams, and simulation figures. |
 
@@ -131,11 +131,11 @@ Open MATLAB and set the Current Folder to the directory containing the project f
 Run each script separately:
 
 ```matlab
-run('matlab_part1_3rd.m')
+run('identify_fopdt.m')
 ```
 
 ```matlab
-run('matlab_part1_4th.m')
+run('identify_sopdt.m')
 ```
 
 Each script clears the workspace and closes existing figures at startup. Review or save its output before running the next script. Small differences in fitted values can arise from numerical settings and software versions.
@@ -143,10 +143,10 @@ Each script clears the workspace and closes existing figures at startup. Review 
 ### 2. Inspect and simulate the models
 
 ```matlab
-open_system('simulink_part2.slx')
-open_system('simulink_part3_relay.slx')
-open_system('simulink_part4.slx')
-open_system('simulink_part5.slx')
+open_system('compare_process_models.slx')
+open_system('relay_feedback.slx')
+open_system('pid_tuning_comparison.slx')
+open_system('smith_predictor_comparison.slx')
 ```
 
 Run each model using **Run** in Simulink, then open its Scope blocks to inspect the responses. The inspected models contain numerical plant and controller parameters in their blocks.
@@ -154,7 +154,7 @@ Run each model using **Run** in Simulink, then open its Scope blocks to inspect 
 To simulate an individual model from the MATLAB Command Window:
 
 ```matlab
-sim('simulink_part2.slx');
+sim('compare_process_models.slx');
 ```
 
 The stored PID comparison model contains the final adjusted gains. To examine the calculated starting designs, enter the corresponding P, I, and D values from the table above in the relevant PID blocks. Save a separate copy if you want to preserve the supplied settings.
